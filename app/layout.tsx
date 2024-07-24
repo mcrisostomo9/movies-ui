@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import Search from "./components/search";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Search />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Search />
+        </Suspense>
         {children}
       </body>
     </html>

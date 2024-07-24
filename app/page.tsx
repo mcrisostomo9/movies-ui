@@ -3,6 +3,7 @@ import MovieCard, { type Movie } from "./components/movie-card";
 import Genres from "./components/genres";
 import Search from "./components/search";
 import Pagination from "./components/pagination";
+import { Suspense } from "react";
 
 type SearchParams = {
   page: string;
@@ -69,7 +70,9 @@ export default async function HomePage({
             </h1>
           )}
         </div>
-        <Genres genres={genres} />
+        <Suspense fallback={<p>Loading...</p>}>
+          <Genres genres={genres} />
+        </Suspense>
         <div className="mt-10">
           <div className="col-span-10">
             <ul className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-x-8">
@@ -81,7 +84,9 @@ export default async function HomePage({
                 <p>No movies found</p>
               )}
             </ul>
-            <Pagination totalPages={totalPages} />
+            <Suspense fallback={<p>Loading...</p>}>
+              <Pagination totalPages={totalPages} />
+            </Suspense>
           </div>
         </div>
       </div>
