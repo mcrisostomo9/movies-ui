@@ -1,16 +1,9 @@
-import { getGenres, getMovies } from "./utils";
+import { getGenres, getMovies, type SearchParams } from "./utils";
 import MovieCard from "./components/movie-card";
 import Genres from "./components/genres";
 
 import Pagination from "./components/pagination";
 import { Suspense } from "react";
-
-type SearchParams = {
-  page: string;
-  limit: string;
-  search: string;
-  genre: string;
-};
 
 export default async function HomePage({
   searchParams,

@@ -52,6 +52,13 @@ async function getTotalMovies(lastPage: number, token: string) {
   return res.data.length;
 }
 
+export type SearchParams = {
+  page: string;
+  limit: string;
+  search: string;
+  genre: string;
+};
+
 export async function getMovies(searchParams: SearchParams) {
   const queryParams = new URLSearchParams([
     ...Object.entries(searchParams),
