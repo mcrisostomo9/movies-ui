@@ -1,6 +1,6 @@
-import { apiClient, getToken } from "../utils";
+import { apiClient, getToken } from "../../utils";
 
-async function getMovieDetails(id: string) {
+export async function getMovieDetails(id: string) {
   const token = await getToken();
   const data = await apiClient<{
     id: string;
@@ -34,6 +34,7 @@ export default async function MovieDetails({
   return (
     <div className="container mx-auto">
       <h1>{movie.title}</h1>
+      <p>{movie.summary}</p>
     </div>
   );
 }

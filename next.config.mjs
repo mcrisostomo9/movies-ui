@@ -4,6 +4,15 @@ const nextConfig = {
         fetches: {
             fullUrl: true
         }
+    },
+    redirects: async () => {
+        return [
+            {
+                source: '/movies',
+                destination: '/',
+                permanent: true
+            }
+        ];
     }
 };
 

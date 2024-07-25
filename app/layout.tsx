@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import Search from "./components/search";
 import { Suspense } from "react";
 
@@ -12,10 +11,12 @@ export const metadata: Metadata = {
   description: "Mark C. Movies",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Suspense fallback={<div>Loading...</div>}>
           <Search />
         </Suspense>
+        {modal}
         {children}
       </body>
     </html>

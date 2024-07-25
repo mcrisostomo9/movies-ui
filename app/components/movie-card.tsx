@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 export type Movie = {
   id: string;
@@ -10,7 +9,7 @@ export type Movie = {
 
 export default function MovieCard({ movie }: { movie: Movie }) {
   return (
-    <Link href={`/${movie.id}`} className="group">
+    <Link href={`/movies/${movie.id}`} className="group">
       {movie.posterUrl ? (
         <div className="aspect-[2/3] w-full overflow-hidden rounded-md bg-gray-200">
           <img

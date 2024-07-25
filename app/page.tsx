@@ -1,7 +1,7 @@
 import { apiClient, getToken } from "./utils";
 import MovieCard, { type Movie } from "./components/movie-card";
 import Genres from "./components/genres";
-import Search from "./components/search";
+
 import Pagination from "./components/pagination";
 import { Suspense } from "react";
 
