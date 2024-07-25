@@ -1,5 +1,5 @@
-import { apiClient, getToken } from "./utils";
-import MovieCard, { type Movie } from "./components/movie-card";
+import { getGenres, getMovies } from "./utils";
+import MovieCard from "./components/movie-card";
 import Genres from "./components/genres";
 
 import Pagination from "./components/pagination";
@@ -11,57 +11,6 @@ type SearchParams = {
   search: string;
   genre: string;
 };
-
-async function getTotalMovies(lastPage: number, token: string) {
-  const res = await apiClient<{
-    data: Array<Movie>;
-    totalPages: number;
-  }>(`/movies?page=${lastPage}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return res.data.length;
-}
-
-async function getMovies(searchParams: SearchParams) {
-  const queryParams = new URLSearchParams([
-    ...Object.entries(searchParams),
-  ]).toString();
-
-  const token = await getToken();
-  const res = await apiClient<{
-    data: Array<Movie>;
-    totalPages: number;
-  }>(`/movies?${queryParams}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  const totalMovies = await getTotalMovies(res.totalPages, token);
-
-  console.log({ totalMovies });
-
-  const movies = res.data;
-  const totalPages = res.totalPages;
-  return { movies, totalPages };
-}
-
-async function getGenres() {
-  const token = await getToken();
-  console.log(token);
-  const { data } = await apiClient<{
-    data: Array<{ id: string; title: string; movies: Array<string> }>;
-  }>("/genres/movies", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return data;
-}
 
 export default async function HomePage({
   searchParams,

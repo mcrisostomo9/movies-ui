@@ -1,4 +1,4 @@
-import { getMovieDetails } from "@/app/movies/[id]/page";
+import { getMovieDetails } from "@/app/utils";
 import Modal from "./modal";
 
 export default async function MoviesModal({
