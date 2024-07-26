@@ -37,7 +37,7 @@ export default function MovieModal(props: Props) {
       onClose={() => {
         router.back();
       }}
-      className="fixed inset-0 z-10"
+      className="fixed inset-0 z-20"
     >
       <DialogBackdrop
         transition

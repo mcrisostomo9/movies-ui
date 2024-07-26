@@ -29,7 +29,7 @@ export default function Search() {
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
+      if (event.key === "/") {
         event.preventDefault();
         inputRef.current?.focus();
       }
@@ -43,7 +43,7 @@ export default function Search() {
   }, []);
 
   return (
-    <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b bg-gray-50 px-4 sm:px-6 lg:px-8">
+    <div className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-x-6 border-b bg-gray-50 px-4 sm:px-6 lg:px-8">
       <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
         <form
           onSubmit={handleSubmit}
@@ -62,12 +62,11 @@ export default function Search() {
               ref={inputRef}
               name="search"
               type="search"
-              placeholder="Search for movie titles..."
+              placeholder="Quick search for movie titles..."
               className="block h-full w-full rounded-lg border bg-transparent py-0 pl-8 pr-0 text-gray-900 ring-slate-400 sm:text-sm"
             />
             <kbd className="absolute bottom-0 right-4 top-0 ml-auto flex items-center text-sm text-zinc-400 dark:text-zinc-500">
-              <kbd className="font-sans">⌘</kbd>
-              <kbd className="font-sans">K</kbd>
+              <kbd className="font-sans">/</kbd>
             </kbd>
           </div>
         </form>

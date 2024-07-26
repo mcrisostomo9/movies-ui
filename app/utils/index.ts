@@ -36,20 +36,8 @@ export async function getMovieDetails(id: string) {
       Authorization: `Bearer ${token}`,
     },
   });
+
   return data;
-}
-
-async function getTotalMovies(lastPage: number, token: string) {
-  const res = await apiClient<{
-    data: Array<Movie>;
-    totalPages: number;
-  }>(`/movies?page=${lastPage}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return res.data.length;
 }
 
 export type SearchParams = {
@@ -74,11 +62,8 @@ export async function getMovies(searchParams: SearchParams) {
     },
   });
 
-  const totalMovies = await getTotalMovies(res.totalPages, token);
-
-  console.log({ totalMovies });
-
   const movies = res.data;
+
   const totalPages = res.totalPages;
   return { movies, totalPages };
 }

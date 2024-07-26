@@ -18,11 +18,12 @@ export default async function HomePage({
       <div className="container mx-auto">
         <div className="py-24 text-center">
           {searchParams.search ? (
-            <div>
+            <div className="flex flex-col gap-2">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900">
                 Search: {searchParams.search}
               </h1>
-              <p>Number of results: {movies.length}</p>
+              {searchParams.genre && <p>Genre: {searchParams.genre}</p>}
+              <p>Showing {movies.length} movies</p>
             </div>
           ) : (
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
