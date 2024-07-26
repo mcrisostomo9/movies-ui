@@ -22,8 +22,8 @@ export default function Genres({
       router.push(`/`);
       return;
     }
-    // TODO: remove pagination when changing genre
-    const queryParams = createQueryString("genre", e.target.value);
+
+    const queryParams = createQueryString("genre", e.target.value, "page");
     router.push(`${pathname}?${queryParams}`);
   };
 
