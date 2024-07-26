@@ -1,7 +1,8 @@
 "use client";
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useState } from "react";
+import { useQueryString } from "../hooks/useQueryString";
 
 export default function Genres({
   genres,
@@ -12,16 +13,7 @@ export default function Genres({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams],
-  );
+  const { createQueryString } = useQueryString(searchParams);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setValue(e.target.value);

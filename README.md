@@ -1,36 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MC Movies app
 
-## Getting Started
+## My approach to the excercise
 
-First, run the development server:
+I wanted to use the latest React paradigms with React Server Components and NextJS App Router. I kept the styling very simple with just TailwindCSS, even though I did want to create something more slick.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+To fetch the movies, I leveraged RSCs to make fetch requests to keep it very simple. When I needed to either filter by genre, or paginate the results, I relied on query params to keep my state and make my queries based off of that. I have been enjoying that pattern lately since I can create shareable links based off of client state.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+An interesting part of the project for me was learning about NextJS's parallel routes in combination with intercepting routes. I integrated that pattern by creating a sort of Instagram style modal pop up on click of a movie, but giving that modal a unique URL. This was based off the NextJS docs example but it gave me a lot of future ideas that I could use in the future.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I would say I'm most pleased with the fact that in terms of the actual requirements, it only took me an hour or so of actual work. Although the implementation was simple, I am just thinking of how far I've come when I started developing 8~ years ago :)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Given more time, I wanted to add some sort of autocomplete feature to the search bar. I also wanted to add some animations with framer motion. Also would have integrated the Youtube API to try and get the movie trailers to be embedded.

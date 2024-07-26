@@ -2,22 +2,13 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { useQueryString } from "../hooks/useQueryString";
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = parseInt(searchParams.get("page") || "1");
-
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams],
-  );
+  const { createQueryString } = useQueryString(searchParams);
 
   return (
     <div className="mt-10 flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6">
