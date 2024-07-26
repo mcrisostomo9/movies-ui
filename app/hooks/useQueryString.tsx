@@ -3,7 +3,7 @@ import { useCallback } from "react";
 
 export function useQueryString(searchParams: ReadonlyURLSearchParams) {
   const createQueryString = useCallback(
-    (name: string, value: string, deleteKey: string) => {
+    (name: string, value: string, deleteKey?: string) => {
       const params = new URLSearchParams(searchParams.toString());
       params.set(name, value);
 
