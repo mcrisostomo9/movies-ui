@@ -7,6 +7,7 @@ import { useCallback } from "react";
 export default function Pagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const currentPage = parseInt(searchParams.get("page") || "1");
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -22,13 +23,21 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
     <div className="mt-10 flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
         <Link
-          href="#"
+          href={
+            pathname +
+            "?" +
+            createQueryString("page", (currentPage + 1).toString())
+          }
           className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Previous
         </Link>
         <Link
-          href="#"
+          href={
+            pathname +
+            "?" +
+            createQueryString("page", (currentPage + 1).toString())
+          }
           className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Next
@@ -40,13 +49,19 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
             aria-label="Pagination"
             className="isolate inline-flex -space-x-px rounded-md shadow-sm"
           >
-            <a
-              href="#"
-              className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            <Link
+              href={
+                currentPage === 1
+                  ? pathname
+                  : pathname +
+                    "?" +
+                    createQueryString("page", (currentPage - 1).toString())
+              }
+              className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-100 focus:z-20 focus:outline-offset-0"
             >
               <span className="sr-only">Previous</span>
               <ChevronLeftIcon aria-hidden="true" className="h-5 w-5" />
-            </a>
+            </Link>
             {Array.from({ length: totalPages }).map((_, i) => {
               return (
                 <Link
@@ -56,21 +71,28 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                     "?" +
                     createQueryString("page", (i + 1).toString())
                   }
-                  className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                  className={
+                    "relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-100 focus:z-20 focus:outline-offset-0" +
+                    (currentPage === i + 1 ? " bg-gray-100" : "")
+                  }
                 >
                   {i + 1}
                 </Link>
               );
             })}
-            {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
-
-            <a
-              href="#"
-              className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-            >
-              <span className="sr-only">Next</span>
-              <ChevronRightIcon aria-hidden="true" className="h-5 w-5" />
-            </a>
+            {currentPage < totalPages && (
+              <Link
+                href={
+                  pathname +
+                  "?" +
+                  createQueryString("page", (currentPage + 1).toString())
+                }
+                className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-100 focus:z-20 focus:outline-offset-0"
+              >
+                <span className="sr-only">Next</span>
+                <ChevronRightIcon aria-hidden="true" className="h-5 w-5" />
+              </Link>
+            )}
           </nav>
         </div>
       </div>
